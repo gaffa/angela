@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<!-- note 'ng-app'. without this marker the app would not get loaded -->
+<html ng-app="angela">
+<head>
+  <!-- style -->
+  <link href="style/angela.css" rel="stylesheet">
+  <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <!-- lib -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-resource.js"></script>
+
+  <!-- app -->
+  <script src="js/angela.js"></script>
+  <script src="js/services/validationService.js"></script>
+  <script src="js/services/memberFactory.js"></script>
+  <script src="js/controller/membersViewController.js"></script>
+  <script src="js/controller/memberViewController.js"></script>
+</head>
+<body>
+<div class="container-fluid row-fluid">
+  <!-- app will be rendered in this div -->
+  <div ng-view/>
+</div>
+</body>
+</html>
