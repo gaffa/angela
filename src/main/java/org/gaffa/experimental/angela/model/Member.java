@@ -12,7 +12,7 @@ public class Member {
 
     private String id;
 
-    @Pattern(regexp = "[a-zA-Z]+")
+    @Pattern(regexp = "[a-zA-Z\\s]+")
     private String name = "";
 
     private String otherValue;

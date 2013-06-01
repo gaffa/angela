@@ -1,3 +1,39 @@
 .validationError {
     color: red;
 }
+
+.label {
+    width: 180px;
+    margin-bottom: 25px;
+}
+
+.input {
+    width: 180px;
+    text-align: center;
+}
+
+.card {
+    text-align: center;
+    float: inherit;
+    background: #fcfdfd;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    width: 200px;
+    height: 95px;
+}
+
+.divider {
+    height: 1px;
+    margin: 8px 1px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    border-bottom: 1px solid #ffffff;
+    *width: 100%;
+    *margin: -5px 0 5px;
+}

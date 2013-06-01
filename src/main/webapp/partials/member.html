@@ -1,0 +1,27 @@
+<!-- member-view -->
+<div ng-controller="MemberController">
+  <!-- display-mode -->
+  <div ng-hide="edit[member.id]" ng-click="edit(member)" class="label">
+    <h3>{{member.name}}</h3>
+  </div>
+
+  <!-- edit-mode -->
+  <div ng-hide="!edit[member.id]">
+    <form name="editMemberForm" ng-click="clearValidationErrors()">
+      <div>
+        <label ng-show="editMemberForm.name.serverError"
+               class="validationError">{{editMemberForm.name.serverError}}</label>
+        <input type="text" name="name" ng-model="member.name" class="input"/>
+      </div>
+    </form>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- buttons -->
+  <div>
+    <button class="btn btn-danger" ng-click="delete(member)">Delete</button>
+    <button ng-hide="!edit[member.id]" class="btn btn-success" ng-click="submit(member)">Save</button>
+    <button ng-hide="!edit[member.id]" class="btn btn-warning" ng-click="reset(member)">Cancel</button>
+  </div>
+</div>

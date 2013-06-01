@@ -9,7 +9,7 @@ appModule.config(
         // configure routes
         '$routeProvider',
         function ($routeProvider) {
-            $routeProvider.when('/viewmembers', {templateUrl: 'partials/membersview.html', controller: MembersController});
+            $routeProvider.when('/viewmembers', {templateUrl: 'partials/members.html', controller: MembersController});
             $routeProvider.otherwise({redirectTo: '/viewmembers'});
         }
     ]
