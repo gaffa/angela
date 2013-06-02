@@ -49,4 +49,9 @@ public class MemberService {
 
         members.remove(id);
     }
+
+    public Member storeMember(Member member, String id) {
+
+        return storeMember(member);
+    }
 }

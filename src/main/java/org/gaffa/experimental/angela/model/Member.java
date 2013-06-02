@@ -15,26 +15,13 @@ public class Member {
     @Pattern(regexp = "[a-zA-Z\\s]+")
     private String name = "";
 
-    private String otherValue;
-
-    private String description;
-
-    public Member setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public Member setOtherValue(String otherValue) {
-        this.otherValue = otherValue;
-        return this;
-    }
-
     public String getName() {
         return name;
     }
 
-    public String getOtherValue() {
-        return otherValue;
+    public Member setName(String name) {
+        this.name = name;
+        return this;
     }
 
     public String getId() {
@@ -43,15 +30,6 @@ public class Member {
 
     public Member setId(String id) {
         this.id = id;
-        return this;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Member setDescription(String description) {
-        this.description = description;
         return this;
     }
 }

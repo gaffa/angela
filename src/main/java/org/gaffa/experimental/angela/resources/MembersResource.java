@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collection;
 
 /**
  * Author: Henning Gross
@@ -24,7 +25,8 @@ public class MembersResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMembers() {
 
-        return Response.ok(memberService.getMembers()).build();
+        Collection<Member> members = memberService.getMembers();
+        return Response.ok(members).build();
     }
 
     @GET
@@ -32,17 +34,18 @@ public class MembersResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMember(@PathParam("id") String id) {
 
-        return Response.ok(memberService.getMember(id)).build();
+        Member member = memberService.getMember(id);
+        return Response.ok(member).build();
     }
 
     @POST
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @ValidateRequest
-    public Response updateMember(@Valid Member member) {
+    public Response updateMember(@PathParam("id") String id, @Valid Member member) {
 
-        memberService.storeMember(member);
-        return Response.ok().build();
+        member = memberService.storeMember(member, id);
+        return Response.ok(member).build();
     }
 
     @POST
@@ -50,7 +53,8 @@ public class MembersResource {
     @ValidateRequest
     public Response addMember(@Valid Member member) {
 
-        return Response.ok(memberService.storeMember(member)).build();
+        member = memberService.storeMember(member);
+        return Response.ok(member).build();
     }
 
     @DELETE

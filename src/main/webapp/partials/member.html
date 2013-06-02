@@ -4,7 +4,7 @@
   <form name="memberForm" ng-click="clearValidationErrors()">
 
     <!-- display-mode -->
-    <div ng-hide="edit[member.id] || !member.id" ng-click="edit(member)" class="label">
+    <div ng-show="!edit[member.id] && member.id" ng-click="edit(member)" class="label">
       <h3>{{member.name}}</h3>
     </div>
 
