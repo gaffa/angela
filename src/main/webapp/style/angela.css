@@ -1,3 +1,11 @@
+.header {
+    width: 100%;
+}
+
+.memberfilter {
+    text-align: right;
+}
+
 .validationError {
     color: red;
 }

@@ -1,6 +1,11 @@
 // controller for 'edit member' (ng-repeat in 'view members')
 function MemberController($scope, Member, Validation) {
 
+    // register new member in scope if none given
+    if ($scope.member == undefined) {
+        $scope.member = new Member();
+    }
+
     // will help keeping a backup of members while they are edited to allow resetting them
     $scope.backup = {};
     // represents edit/view toggle-state
@@ -29,23 +34,30 @@ function MemberController($scope, Member, Validation) {
     };
 
     /**
-     * submit changes
+     * submit changes (or create member)
      */
     $scope.submit = function (member) {
 
+        var isCreate = member.id == undefined;
+
         // success-handler for save-call
         var success = function (result) {
-
-            // updated on server, disable edit mode
-            $scope.edit[member.id] = false;
+            if (isCreate) {
+                // push to model
+                $scope.members.push(member);
+                // reset to empty form
+                $scope.member = new Member();
+            } else {
+                // updated on server, disable edit mode
+                $scope.edit[member.id] = false;
+            }
         };
 
         // error-handler for save-call
         var error = function (result) {
-
             // map validation errors, log all other
             if (result.status == 412) {
-                Validation.mapValidationErrors($scope.editMemberForm, result.data);
+                Validation.mapValidationErrors($scope.memberForm, result.data);
             } else {
                 console.log('error');
             }
@@ -62,7 +74,6 @@ function MemberController($scope, Member, Validation) {
 
         // success-handler for delete-call
         var success = function (result) {
-
             // deleted on server, remove from model
             $scope.members.splice($scope.members.indexOf(member), 1);
         };
@@ -75,6 +86,7 @@ function MemberController($scope, Member, Validation) {
      * clear validation errors
      */
     $scope.clearValidationErrors = function () {
-        Validation.clearAllValidationErrors($scope.editMemberForm);
+
+        Validation.clearAllValidationErrors($scope.memberForm);
     }
 }

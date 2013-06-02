@@ -1,27 +1,28 @@
 <!-- member-view -->
 <div ng-controller="MemberController">
-  <!-- display-mode -->
-  <div ng-hide="edit[member.id]" ng-click="edit(member)" class="label">
-    <h3>{{member.name}}</h3>
-  </div>
 
-  <!-- edit-mode -->
-  <div ng-hide="!edit[member.id]">
-    <form name="editMemberForm" ng-click="clearValidationErrors()">
+  <form name="memberForm" ng-click="clearValidationErrors()">
+
+    <!-- display-mode -->
+    <div ng-hide="edit[member.id] || !member.id" ng-click="edit(member)" class="label">
+      <h3>{{member.name}}</h3>
+    </div>
+
+    <!-- edit-mode -->
+    <div ng-show="edit[member.id] || !member.id">
       <div>
-        <label ng-show="editMemberForm.name.serverError"
-               class="validationError">{{editMemberForm.name.serverError}}</label>
+        <label ng-show="memberForm.name.serverError" class="validationError">{{memberForm.name.serverError}}</label>
         <input type="text" name="name" ng-model="member.name" class="input"/>
       </div>
-    </form>
-  </div>
+    </div>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- buttons -->
-  <div>
-    <button class="btn btn-danger" ng-click="delete(member)">Delete</button>
-    <button ng-hide="!edit[member.id]" class="btn btn-success" ng-click="submit(member)">Save</button>
-    <button ng-hide="!edit[member.id]" class="btn btn-warning" ng-click="reset(member)">Cancel</button>
-  </div>
+    <!-- buttons -->
+    <div ng-hide="memberForm.name.serverError">
+      <button ng-show="!edit[member.id] && member.id" class="btn btn-danger" ng-click="delete(member)">Delete</button>
+      <button ng-show="edit[member.id] || !member.id" class="btn btn-success" ng-click="submit(member)">Save</button>
+      <button ng-show="edit[member.id]" class="btn btn-warning" ng-click="reset(member)">Cancel</button>
+    </div>
+  </form>
 </div>

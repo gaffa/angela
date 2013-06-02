@@ -1,29 +1,21 @@
 <!-- members-view -->
 <div class="span9 hero-unit">
 
-  <h2>Angelas Members</h2><br/>
+  <table class="header">
+    <tr>
+      <td><h2>Angelas Members</h2></td>
+      <td class="memberfilter">Filter: <input ng-model="memberfilter" class="input"></td>
+    </tr>
+  </table>
+
+  <br/>
 
   <ul class="thumbnails">
 
-    <!-- include members -->
-    <li ng-repeat="member in members" ng-include src="'partials/member.html'" class="card"></li>
+    <!-- existing members -->
+    <li ng-repeat="member in members | filter:memberfilter" ng-include src="'partials/member.html'" class="card"></li>
 
-    <!-- new member -->
-    <li class="card">
-      <div>
-        <form name="addMemberForm" ng-click="clearValidationErrors()">
-          <label ng-show="addMemberForm.name.serverError"
-                 class="validationError">{{addMemberForm.name.serverError}}</label>
-          <input type="text" name="name" ng-model="newMember.name" class="input"/>
-        </form>
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- button -->
-      <div>
-        <button class="btn btn-success" ng-click="add(newMember)">Save</button>
-      </div>
-    </li>
+    <!-- card for new member -->
+    <li ng-include src="'partials/member.html'" class="card"></li>
   </ul>
 </div>
