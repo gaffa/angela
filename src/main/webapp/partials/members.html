@@ -1,21 +1,22 @@
 <!-- members-view -->
-<div class="span9 hero-unit">
+<div class="span9 hero-unit" ng-controller="MembersController">
 
-  <table class="header">
-    <tr>
-      <td><h2>Angelas Members</h2></td>
-      <td class="memberfilter">Filter: <input ng-model="memberfilter" class="input"></td>
-    </tr>
-  </table>
+    <table class="header">
+        <tr>
+            <td><h2>Angelas Members</h2></td>
+            <td class="memberfilter">Filter: <input ng-model="memberfilter" class="input"></td>
+        </tr>
+    </table>
 
-  <br/>
+    <br/>
 
-  <ul class="thumbnails">
+    <ul class="thumbnails">
 
-    <!-- existing members -->
-    <li ng-repeat="member in members | filter:memberfilter" ng-include src="'partials/member.html'" class="card"></li>
+        <!-- existing members -->
+        <li ng-repeat="member in members | filter:memberfilter" ng-include
+            src="'partials/member.html'" class="card"></li>
 
-    <!-- card for new member -->
-    <li ng-include src="'partials/member.html'" class="card"></li>
-  </ul>
+        <!-- card for new member -->
+        <li ng-include src="'partials/member.html'" class="card"></li>
+    </ul>
 </div>
