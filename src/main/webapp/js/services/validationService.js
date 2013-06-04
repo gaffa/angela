@@ -7,7 +7,7 @@ var validationModule = angular.module('validationService', []);
 validationModule.service('Validation', function () {
 
     /**
-     * clears all validation errors is given form
+     * clears all validation errors in given form
      */
     this.clearAllValidationErrors = function (form) {
 
@@ -39,7 +39,7 @@ validationModule.service('Validation', function () {
 
             var control = form[key];
             control.serverError = validationErrorMap[key];
-            control.$setValidity(key, false);
+            control.$setValidity(control.name, false);
         });
     };
 });

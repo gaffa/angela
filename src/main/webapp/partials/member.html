@@ -1,34 +1,34 @@
 <!-- member-view -->
 <div ng-controller="MemberController">
 
-    <form name="memberForm" ng-click="clearValidationErrors()">
+  <form name="memberForm" ng-click="clearValidationErrors()" novalidate>
 
-        <!-- display-mode -->
-        <div ng-show="!edit[member.id] && member.id" ng-click="edit(member)" class="label">
-            <h3>{{member.name}}</h3>
-        </div>
+    <!-- display-mode -->
+    <div ng-show="!edit[member.id] && member.id" ng-click="edit(member)" class="label">
+      <h3>{{member.name}}</h3>
+    </div>
 
-        <!-- edit-mode -->
-        <div ng-show="edit[member.id] || !member.id">
-            <div>
-                <label ng-show="memberForm.name.serverError" class="validationError">{{memberForm.name.serverError}}</label>
-                <input type="text" name="name" ng-model="member.name" class="input"/>
-            </div>
-        </div>
+    <!-- edit-mode -->
+    <div ng-show="edit[member.id] || !member.id">
+      <div>
+        <label ng-show="memberForm.name.serverError" class="validationError">{{memberForm.name.serverError}}</label>
+        <input type="text" name="name" ng-model="member.name" class="input" required/>
+      </div>
+    </div>
 
-        <div class="divider"></div>
+    <div class="divider"></div>
 
-        <!-- buttons -->
-        <div ng-hide="memberForm.name.serverError">
-            <button ng-show="!edit[member.id] && member.id" class="btn btn-danger"
-                    ng-click="delete(member)">Delete
-            </button>
-            <button ng-show="edit[member.id] || !member.id" class="btn btn-success"
-                    ng-click="submit(member)">Save
-            </button>
-            <button ng-show="edit[member.id]" class="btn btn-warning" ng-click="reset(member)">
-                Cancel
-            </button>
-        </div>
-    </form>
+    <!-- buttons -->
+    <div ng-hide="memberForm.name.serverError">
+      <button ng-show="!edit[member.id] && member.id" class="btn btn-danger"
+              ng-click="delete(member)">Delete
+      </button>
+      <button ng-show="edit[member.id] || !member.id" class="btn btn-success"
+              ng-click="submit(member)">Save
+      </button>
+      <button ng-show="edit[member.id]" class="btn btn-warning" ng-click="reset(member)">
+        Cancel
+      </button>
+    </div>
+  </form>
 </div>

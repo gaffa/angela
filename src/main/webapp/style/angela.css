@@ -1,7 +1,7 @@
-/*.ng-invalid {*/
-/*border-color: red;*/
-/*outline-color: red;*/
-/*}*/
+.ng-invalid {
+    border-color: red;
+    outline-color: red;
+}
 
 .header {
     width: 100%;

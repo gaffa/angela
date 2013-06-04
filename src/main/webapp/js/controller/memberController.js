@@ -38,6 +38,8 @@ function MemberController($scope, Member, Validation) {
      */
     $scope.submit = function (member) {
 
+        $scope.clearValidationErrors();
+
         var isCreate = member.id == undefined;
 
         // success-handler for save-call
