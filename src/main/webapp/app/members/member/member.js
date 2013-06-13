@@ -1,58 +1,53 @@
 angular.module('member', ['resources.members', 'services.validation']);
 
-angular.module('member').controller('MemberController', function ($scope, Member, Validation) {
+angular.module('member').controller('MemberController', function ($scope, Member, Validation, $templateCache) {
 
     // register new member in scope if none given
     if ($scope.member == undefined) {
         $scope.member = new Member();
     }
 
-    // will help keeping a backup of members while they are edited to allow resetting them
-    $scope.backup = {};
-    // represents edit/view toggle-state
-    $scope.edit = {};
-
     /**
      * start edit mode
      */
-    $scope.edit = function (member) {
+    $scope.doedit = function () {
 
         // backup member
-        $scope.backup[member.id] = angular.copy(member);
+        $scope.backup = angular.copy($scope.member);
         // enable edit mode
-        $scope.edit[member.id] = true;
+        $scope.edit = true;
     };
 
     /**
      * cancel edit
      */
-    $scope.reset = function (member) {
+    $scope.reset = function () {
 
         // reset model to backup
-        angular.extend(member, $scope.backup[member.id]);
+        angular.extend($scope.member, $scope.backup);
         // cancel edit mode
-        $scope.edit[member.id] = false;
+        $scope.edit = false;
     };
 
     /**
      * submit changes (or create member)
      */
-    $scope.submit = function (member) {
+    $scope.submit = function () {
 
         $scope.clearValidationErrors();
 
-        var isCreate = member.id == undefined;
+        var isCreate = $scope.member.id == undefined;
 
         // success-handler for save-call
         var success = function (result) {
             if (isCreate) {
                 // push to model
-                $scope.members.push(member);
+                $scope.members.push($scope.member);
                 // reset to empty form
                 $scope.member = new Member();
             } else {
                 // updated on server, disable edit mode
-                $scope.edit[member.id] = false;
+                $scope.edit = false;
             }
         };
 
@@ -67,22 +62,22 @@ angular.module('member').controller('MemberController', function ($scope, Member
         };
 
         // save to server
-        member.$save({}, success, error);
+        $scope.member.$save({}, success, error);
     };
 
     /**
      * delete member
      */
-    $scope.delete = function (member) {
+    $scope.delete = function () {
 
         // success-handler for delete-call
         var success = function (result) {
             // deleted on server, remove from model
-            $scope.members.splice($scope.members.indexOf(member), 1);
+            $scope.members.splice($scope.members.indexOf($scope.member), 1);
         };
 
         // delete member
-        Member.delete({id: member.id}, success);
+        Member.delete({id: $scope.member.id}, success);
     };
 
     /**

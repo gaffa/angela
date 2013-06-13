@@ -4,12 +4,12 @@
   <form name="memberForm" ng-click="clearValidationErrors()" novalidate>
 
     <!-- display-mode -->
-    <div ng-show="!edit[member.id] && member.id" ng-click="edit(member)" class="label">
+    <div ng-show="!edit && member.id" ng-click="doedit()" class="label">
       <h3>{{member.name}}</h3>
     </div>
 
     <!-- edit-mode -->
-    <div ng-show="edit[member.id] || !member.id">
+    <div ng-show="edit || !member.id">
       <div>
         <label ng-show="memberForm.name.serverError" class="validationError">{{memberForm.name.serverError}}</label>
         <input type="text" name="name" ng-model="member.name" class="input" required/>
@@ -20,13 +20,13 @@
 
     <!-- buttons -->
     <div ng-hide="memberForm.name.serverError">
-      <button ng-show="!edit[member.id] && member.id" class="btn btn-danger"
-              ng-click="delete(member)">Delete
+      <button ng-show="!edit && member.id" class="btn btn-danger"
+              ng-click="delete()">Delete
       </button>
-      <button ng-show="edit[member.id] || !member.id" class="btn btn-success"
-              ng-click="submit(member)">Save
+      <button ng-show="edit || !member.id" class="btn btn-success"
+              ng-click="submit()">Save
       </button>
-      <button ng-show="edit[member.id]" class="btn btn-warning" ng-click="reset(member)">
+      <button ng-show="edit" class="btn btn-warning" ng-click="reset()">
         Cancel
       </button>
     </div>
