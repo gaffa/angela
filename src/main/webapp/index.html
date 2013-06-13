@@ -3,27 +3,27 @@
 <!-- note 'ng-app'. without this marker the app would not get loaded -->
 <html ng-app="angela">
 <head>
-    <!-- style -->
-    <link href="style/angela.css" rel="stylesheet">
-    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <!-- style -->
+  <link href="style/angela.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-    <!-- lib -->
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular/angular-resource.js"></script>
+  <!-- vendor -->
+  <script src="vendor/angular/angular.min.js"></script>
+  <script src="vendor/angular/angular-resource.min.js"></script>
 
-    <!-- app -->
-    <script src="js/angela.js"></script>
-    <script src="js/services/validationService.js"></script>
-    <script src="js/services/memberFactory.js"></script>
-    <script src="js/controller/membersController.js"></script>
-    <script src="js/controller/memberController.js"></script>
+  <!-- app -->
+  <script src="app/app.js"></script>
+  <script src="app/members/members.js"></script>
+  <script src="app/members/member/member.js"></script>
+  <script src="common/resources/members.js"></script>
+  <script src="common/services/validation.js"></script>
 </head>
 <body>
 <br/>
 
 <div class="container-fluid row-fluid">
-    <!-- app will be rendered in this div -->
-    <div ng-include="'partials/members.html'"></div>
+  <!-- app will be rendered in this div -->
+  <div ng-include="'app/members/members.tpl.html'"/>
 </div>
 </body>
 </html>

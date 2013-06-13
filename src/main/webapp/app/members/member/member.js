@@ -1,5 +1,6 @@
-// controller for 'edit member' (ng-repeat in 'view members')
-function MemberController($scope, Member, Validation) {
+angular.module('member', ['resources.members', 'services.validation']);
+
+angular.module('member').controller('MemberController', function ($scope, Member, Validation) {
 
     // register new member in scope if none given
     if ($scope.member == undefined) {
@@ -91,4 +92,4 @@ function MemberController($scope, Member, Validation) {
 
         Validation.clearAllValidationErrors($scope.memberForm);
     }
-}
+});
